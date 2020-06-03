@@ -1,0 +1,28 @@
+<#@ template hostspecific="True" #>
+
+<#
+/*
+This is the configuration file for GenericModelGenerator.tt
+*/
+	// Settings
+	ConfigPath = @""; //Looks in current project for web.config or app.config by default. You can override it to point to a different config file.
+    ConnectionStringName = ""; // Uses the last connection string in the config if not specified
+    Namespace = "Dapper.FastCrud.Tests.Models";
+	ClassPrefix = "";
+	ClassSuffix = "";
+    IncludeViews = true;
+	IgnoreColumnDefaultValues = true; // when set to false, the generated properties mapped to columns having default values will be refreshed with the database assigned values on insert.
+	ExcludeTablePrefixes = new string[]{"ELMAH", "AspNet_", "HangFire."};
+#>
+<#@ include file="GenericModelGenerator.tt" #>
+<#+
+	void ConfigureTableMappings(Tables tables){
+		/*
+			// Tweak Schema
+			tables["tablename"].Ignore = true;							// To ignore a table
+			tables["tablename"].ClassName = "newname";					// To change the class name of a table
+			tables["tablename"]["columnname"].Ignore = true;			// To ignore a column
+			tables["tablename"]["columnname"].PropertyType="bool";		// To change the property type of a column
+		*/
+	}
+#>
