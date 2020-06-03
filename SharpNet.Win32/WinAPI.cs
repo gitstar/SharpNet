@@ -23,14 +23,14 @@ namespace SharpNet.Win32
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetCursorPos(ref Define.POINT pt);
+        public static extern bool GetCursorPos(ref POINT pt);
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ClientToScreen(IntPtr hWnd, ref Define.POINT pt);
+        public static extern bool ClientToScreen(IntPtr hWnd, ref POINT pt);
 
         [DllImport("user32.dll")]
-        public static extern IntPtr WindowFromPoint(Define.POINT pt);
+        public static extern IntPtr WindowFromPoint(POINT pt);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool MoveWindow(IntPtr hwnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
@@ -52,11 +52,11 @@ namespace SharpNet.Win32
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetWindowRect(IntPtr hWnd, ref Define.RECT lpRect);
+        public static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetClientRect(IntPtr hWnd, ref Define.RECT lpRect);
+        public static extern bool GetClientRect(IntPtr hWnd, ref RECT lpRect);
 
         [DllImport("user32.dll")]
         public static extern bool OpenClipboard(IntPtr hWnd);
