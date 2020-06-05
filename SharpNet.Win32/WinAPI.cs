@@ -89,5 +89,11 @@ namespace SharpNet.Win32
 
         [DllImport("kernel32.dll")]
         public static extern IntPtr LoadLibrary(string lpFileName);
+
+        [DllImport("kernel32.dll")]
+        public static extern bool FreeLibrary(IntPtr a1);
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr GetProcAddress(IntPtr a1, string a2);
     }
 }
