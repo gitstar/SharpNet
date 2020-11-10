@@ -36,7 +36,7 @@ namespace SharpNet.Log
         /// <param name="methodName"></param>
         /// <param name="logData"></param>
         /// <param name="className"></param>
-        public static void Debug(string methodName, string logData, string className = null, bool isEnable = false)
+        public static void Debug(string methodName, string logData, string className = null, bool isEnable = true)
         {
             if (!isEnable)
                 return;

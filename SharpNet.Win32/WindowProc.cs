@@ -75,5 +75,21 @@ namespace SharpNet.Win32
 
             return maxDate;
         }
+
+        public static void ExecuteAsAdmin(string fileName, string param = null)
+        {
+            Process proc = new Process();
+            proc.StartInfo.FileName = fileName;
+            proc.StartInfo.UseShellExecute = true;
+
+            if (param != null)
+                proc.StartInfo.Arguments = param;
+
+            if (System.Environment.OSVersion.Version.Major >= 6)
+            {
+                proc.StartInfo.Verb = "runas";
+            }
+            proc.Start();
+        }
     }
 }

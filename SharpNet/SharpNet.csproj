@@ -81,7 +81,9 @@
     <Compile Include="Core\Socket\Define.cs" />
     <Compile Include="Core\Socket\SocketPacket.cs" />
     <Compile Include="Encoder\Encoder.cs" />
-    <Compile Include="Log\ConsoleLog.cs" />
+    <Compile Include="Http\HttpRequestHelper.cs" />
+    <Compile Include="Http\WRequest.cs" />
+    <Compile Include="Log\FileLog.cs" />
     <Compile Include="Log\SharpLog.cs" />
     <Compile Include="Parse\JsonParse.cs" />
     <Compile Include="Parse\NPoiExcel.cs" />
@@ -95,6 +97,7 @@
   <ItemGroup>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>

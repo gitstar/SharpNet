@@ -25,7 +25,7 @@ namespace SharpNet.Parse
             }
             catch (Exception ex)
             {
-                return string.Empty;
+                throw new Exception(ex.ToString());
             }
         }
 
@@ -46,7 +46,7 @@ namespace SharpNet.Parse
             }
             catch (Exception ex)
             {
-                return new T();
+                throw new Exception(ex.ToString());
             }
         }
 
@@ -67,7 +67,7 @@ namespace SharpNet.Parse
             }
             catch (Exception ex)
             {
-                return new List<T>();
+                throw new Exception(ex.ToString());
             }
         }
     }

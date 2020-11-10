@@ -14,7 +14,7 @@ namespace SharpNet.Set
             if (mainKey != null)
                 baseRegistryKey = mainKey;
 
-            if(subKey !=null)
+            if(sKey != null)
             {
                 SubKey = sKey;
             }
@@ -29,7 +29,7 @@ namespace SharpNet.Set
         public string Read(string KeyName)
         {         
             // Open a subKey as read-only
-            RegistryKey sk1 = baseRegistryKey.OpenSubKey(subKey);
+            RegistryKey sk1 = baseRegistryKey.OpenSubKey(SubKey);
             // If the RegistrySubKey doesn't exist -> (null)
             if (sk1 == null)
             {
@@ -56,7 +56,7 @@ namespace SharpNet.Set
             try
             {
                 // 'cause OpenSubKey open a subKey as read-only
-                RegistryKey sk1 = baseRegistryKey.CreateSubKey(subKey);
+                RegistryKey sk1 = baseRegistryKey.CreateSubKey(SubKey);
                 // Save the value
                 sk1.SetValue(KeyName.ToUpper(), Value);
 
@@ -74,7 +74,7 @@ namespace SharpNet.Set
             try
             {
 
-                RegistryKey sk1 = baseRegistryKey.CreateSubKey(subKey);
+                RegistryKey sk1 = baseRegistryKey.CreateSubKey(SubKey);
                 // If the RegistrySubKey doesn't exists -> (true)
                 if (sk1 == null)
                     return true;
@@ -94,10 +94,10 @@ namespace SharpNet.Set
         {
             try
             {
-                RegistryKey sk1 = baseRegistryKey.OpenSubKey(subKey);
+                RegistryKey sk1 = baseRegistryKey.OpenSubKey(SubKey);
                 // If the RegistryKey exists, I delete it
                 if (sk1 != null)
-                    baseRegistryKey.DeleteSubKeyTree(subKey);
+                    baseRegistryKey.DeleteSubKeyTree(SubKey);
 
                 return true;
             }
@@ -112,7 +112,7 @@ namespace SharpNet.Set
         {
             try
             {
-                RegistryKey sk1 = baseRegistryKey.OpenSubKey(subKey);
+                RegistryKey sk1 = baseRegistryKey.OpenSubKey(SubKey);
                 // If the RegistryKey exists...
                 if (sk1 != null)
                     return sk1.SubKeyCount;
@@ -130,7 +130,7 @@ namespace SharpNet.Set
         {
             try
             {
-                RegistryKey sk1 = baseRegistryKey.OpenSubKey(subKey);
+                RegistryKey sk1 = baseRegistryKey.OpenSubKey(SubKey);
                 // If the RegistryKey exists...
                 if (sk1 != null)
                     return sk1.ValueCount;
