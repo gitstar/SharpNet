@@ -15,6 +15,49 @@ namespace SharpNet.Http
         {
 
         }
+
+        public virtual CookieCollection GetWebCookie(string url, string strHost, string strCookie = null, string contentType = "application/x-www-form-urlencoded")
+        {
+            CookieCollection Cookies;
+
+            var httpWebRequest = CreateHttpWebRequest(url, "Get", contentType);
+            httpWebRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
+            httpWebRequest.KeepAlive = true;
+            httpWebRequest.Host = strHost;
+            httpWebRequest.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36";
+            httpWebRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            WebHeaderCollection myWebHeaderCollection = httpWebRequest.Headers;
+            myWebHeaderCollection.Add("Accept-Encoding:gzip, deflate");
+            myWebHeaderCollection.Add("Accept-Language", "en-US,en;q=0.9,ko;q=0.8");
+            myWebHeaderCollection.Add("Cache-Control", "max-age=0");
+            myWebHeaderCollection.Add("Upgrade-Insecure-Requests", "1");
+
+
+            if (strCookie.IsNotEmptyOrWhiteSpace())
+            {
+                CookieContainer cookiecontainer = new CookieContainer();
+                string[] cookies = strCookie.Split(';');
+                foreach (string cookie in cookies)
+                    cookiecontainer.SetCookies(new Uri(url), cookie);
+                httpWebRequest.CookieContainer = cookiecontainer;
+            }
+            else
+            {
+                CookieContainer cookieJar = new CookieContainer();
+                httpWebRequest.CookieContainer = cookieJar;
+            }
+
+            HttpWebResponse response = (HttpWebResponse)httpWebRequest.GetResponse();
+            Cookies = response.Cookies;
+            //using (Stream responseStream = response.GetResponseStream())
+            //{
+            //    // Store Cookies
+            //    Cookies = response.Cookies;
+            //}
+
+            return Cookies;
+        }
         /// <summary>
         /// synchronous web response with getmode
         /// </summary>
@@ -56,6 +99,7 @@ namespace SharpNet.Http
 
             Task<WebResponse> responseTask = Task.Factory.FromAsync<WebResponse>(httpWebRequest.BeginGetResponse, httpWebRequest.EndGetResponse, null);
             return  GetResponseText(responseTask.Result.GetResponseStream());
+           
         }
 
 
@@ -558,7 +602,7 @@ namespace SharpNet.Http
         }
     }
 
-    internal class HttpWebRequestAsyncState
+    public class HttpWebRequestAsyncState
     {
         public byte[] RequestBytes { get; set; }
         public HttpWebRequest HttpWebRequest { get; set; }
