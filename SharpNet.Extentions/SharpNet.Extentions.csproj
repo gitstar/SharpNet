@@ -51,6 +51,7 @@
     <Compile Include="EnumExtension.cs" />
     <Compile Include="EventHandlerExtensions.cs" />
     <Compile Include="FileExtensions.cs" />
+    <Compile Include="FloatExtensions.cs" />
     <Compile Include="GridViewExtentions.cs" />
     <Compile Include="Int32Extensions.cs" />
     <Compile Include="LinqExtensions.cs" />

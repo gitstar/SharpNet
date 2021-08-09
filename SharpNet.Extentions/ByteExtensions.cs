@@ -25,15 +25,24 @@ public static class ByteExtensions
 
     public static byte[] Decompress(this byte[] data)
     {
-        using (var inStream = new MemoryStream(data))
-        using (var bigStream = new GZipStream(inStream, CompressionMode.Decompress))
-        using (var bigStreamOut = new MemoryStream())
+        try
         {
-            bigStream.CopyTo(bigStreamOut);
+            using (var inStream = new MemoryStream(data))
+            using (var bigStream = new GZipStream(inStream, CompressionMode.Decompress))
+            using (var bigStreamOut = new MemoryStream())
+            {
+                bigStream.CopyTo(bigStreamOut);
 
-            return bigStreamOut.ToArray();
-            // output = Encoding.UTF8.GetString(bigStreamOut.ToArray());
+                return bigStreamOut.ToArray();
+                // output = Encoding.UTF8.GetString(bigStreamOut.ToArray());
+            }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+            return null;
+        }
+       
     }
 
     public static string ToEucKRString(this byte[] data)
