@@ -9,6 +9,10 @@ namespace SharpNet.Set
     {
         private string iniPath;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
         public INIFile(string fileName = "")
         {
             // string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
