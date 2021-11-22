@@ -45,6 +45,13 @@ namespace SharpNet.Parse
             return myObject;
         }
 
+        public static List<T> JsonDeserializeList <T>(this string jsonData)
+        {
+            List<T> myObject = JsonConvert.DeserializeObject<List<T>>(jsonData);
+
+            return myObject;
+        }
+
         public static T JsonDeserialize<T>(this object jsonData)
         {
             T myObject = JsonConvert.DeserializeObject<T>(jsonData.ToString());

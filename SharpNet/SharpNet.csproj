@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>sharpnet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.8.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.8.8\lib\net40\BouncyCastle.Crypto.dll</HintPath>
@@ -90,6 +96,7 @@
     <Compile Include="Parse\NPoiExcel.cs" />
     <Compile Include="Parse\XmlParse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Save\XMLProc.cs" />
     <Compile Include="Set\INIFile.cs" />
     <Compile Include="Set\RegEdit.cs" />
     <Compile Include="Set\Setting.cs" />
@@ -105,6 +112,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="sharpnet.snk" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tool\" />
