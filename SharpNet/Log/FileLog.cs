@@ -46,7 +46,13 @@ namespace SharpNet.Log
             SharpLog.Error(methodName, logData, className, isEnable);
         }
 
-        public void DisplayLog(string strResult, Color color = default(Color), bool isEnable = true)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strResult">text of log </param>
+        /// <param name="isFile">write to filelog with nlog package</param>
+        /// <param name="isEnable"> enable show log</param>
+        public void DisplayLog(string strResult, bool isFile = true, bool isEnable = true)
         {
             if (!isEnable)
                 return;
@@ -63,7 +69,8 @@ namespace SharpNet.Log
                     richTextBox.AppendText(str);
                     richTextBox.ScrollToCaret();
 
-                    Debug("", strResult);
+                    if(isFile)
+                        Debug("", strResult);
 
                 }));
             }
