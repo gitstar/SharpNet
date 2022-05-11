@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace SharpNet.Parse
@@ -16,7 +17,7 @@ namespace SharpNet.Parse
             }
             try
             {
-                using (StringWriter stringWriter = new System.IO.StringWriter())
+                using (StringWriter stringWriter = new Utf8StringWriter())
                 {
                     var serializer = new XmlSerializer(typeof(T));
                     serializer.Serialize(stringWriter, dataObject);
@@ -50,7 +51,7 @@ namespace SharpNet.Parse
             }
         }
 
-        public static List<T> DeserializeObjectList <T> (this string xml)
+        public static List<T> DeserializeObjectList<T>(this string xml)
              where T : new()
         {
             if (string.IsNullOrEmpty(xml))
@@ -70,5 +71,10 @@ namespace SharpNet.Parse
                 throw new Exception(ex.ToString());
             }
         }
+    }
+
+    public class Utf8StringWriter : StringWriter
+    {
+        public override Encoding Encoding => Encoding.UTF8;
     }
 }
